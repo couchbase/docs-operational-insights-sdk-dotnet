@@ -15,7 +15,7 @@ Please test them locally, and then submit a pull request.
 A guide to using asciidoc, building Antora locally, and working with our repos can be found at https://docs.couchbase.com/home/contribute/index.html[https://docs.couchbase.com/home/contribute/index.html] (this may still be in the middle of being updated).
 
 At a minimum, to build the docs locally, you will need this repo,
-https://github.com/couchbase/docs-analytics-sdk-common[docs-analytics-sdk-common],
+https://github.com/couchbase/docs-operational-insights-sdk-common[docs-operational-insights-sdk-common],
 and the https://github.com/couchbase/docs-server[Server Docs repo]
 in your Antora playbook.
 The [Operational Insights Enterprise repo] will also be needed for most practical purposes.
@@ -49,11 +49,11 @@ Docs that you need to use the software (compatibility tables, release notes, etc
 
 Within each module, docs content is mostly found in the `pages` directories, as `.adoc` files.
 Occasionally, a partial fragment in a `partials` directory contains content reused over more than one page.
-Most re-use is from single-sourced content in the https://github.com/couchbase/docs-analytics-sdk-common[sdk-common] repo.
+Most re-use is from single-sourced content in the https://github.com/couchbase/docs-operational-insights-sdk-common[sdk-common] repo.
 
 === Single-sourced Content
 
-To make maintenance easier for docs of many SDKs, content that is common across SDK docsets is -- wherever possible -- single-sourced from the https://github.com/couchbase/docs-operational-insights-sdk-common[sdk-analytics-common] repo.
+To make maintenance easier for docs of many SDKs, content that is common across SDK docsets is -- wherever possible -- single-sourced from the https://github.com/couchbase/docs-operational-insights-sdk-common[sdk-operational-insights-common] repo.
 
 We recognise that this adds a slight cognitive burden for the new maintainer, but one layer of abstraction seems a reasonable compromise for maintainability.
 To make content re-use workable, certain replaceable attributes are used.
