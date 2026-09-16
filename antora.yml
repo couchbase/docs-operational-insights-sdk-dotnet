@@ -1,0 +1,26 @@
+name: dotnet-operational-insights-sdk
+version: '1.0'
+title: .NET Operational Insights SDK
+start_page: hello-world:overview.adoc
+nav:
+- modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    page-nav-header-levels: 2
+    server_version: '8.0.3'
+    ea_version: '3.0.0'
+    oi_version: '3.0.0'
+    sdk_current_version: '1.0.0'
+    sdk_dot_minor: '1.0'
+    sdk_dot_major: '1.x'
+    version-server: '8.0'
+    version-ea: '3.0'
+    version-oi: '3.0'
+    version-common: '1.0'
+    name_platform: '.NET'
+    name_platform_lc: 'dotnet'
+    name-sdk: '.NET Operational Insights SDK'
+    sdk_api: '1.0'
+    sdk-api-link: https://docs.couchbase.com/sdk-api/operational-insights-dotnet-client
+    sdk-gh-link: https://github.com/couchbaselabs/operational-insights-dotnet-client/

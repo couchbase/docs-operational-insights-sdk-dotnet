@@ -1,0 +1,103 @@
+= {name-sdk} Quickstart Guide
+:page-toclevels: 2
+:description: Install, connect, try. A quick start guide to get you up and running with Operational Insights and the {name-sdk}.
+
+[abstract]
+{description}
+
+
+
+
+
+include::{version-common}@operational-insights-sdk:shared:partial$start-using-sdk.adoc[tag=intro]
+
+
+== Before You Start
+
+Install and configure an xref:enterprise-analytics:intro:intro.adoc[Operational Insights Cluster].
+
+
+// After creating the cluster, add your IP address to the list of allowed IP addresses.
+// TODO: Link to https://docs.couchbase.com/columnar/admin/ip-allowed-list.html
+
+[#minimum-dotnet-version]
+=== Minimum .NET Version
+
+The {name-sdk} requires .NET 8 or later.
+We recommend using the most recent long-term support (LTS) version of .NET.
+
+== Adding the SDK to an Existing Project
+
+Add the NuGet package to your `*.csproj` file, or add it using the command line:
+
+[source,shell]
+----
+dotnet add package Couchbase.OperationalInsightsClient
+----
+
+[source,xml,subs="+attributes"]
+----
+<PackageReference Include="Couchbase.OperationalInsightsClient" Version="{sdk_current_version}" />
+----
+
+
+
+[quickstart]
+== Connecting and Executing a Query
+
+Support for JWT and client certificate authentication, as well as a new Server Async poll-based API that uses request handles to fetch results,
+was introduced in the Operational Insights Enterprise Server 2.2.
+This API eliminates the need for long-running server connections.
+
+The examples in this first section of the page are for the standard API -- async on the client side -- working with Operational Insights 2.0 and later (with Server Async examples following in the <<#server-asynchronous-api,Server Async section>>).
+You can still use this API with Operational Insights 2.2 and later, in addition to the new API.
+
+=== Server Synchronous API
+
+[source,csharp]
+----
+using Couchbase.AnalyticsClient;
+using Couchbase.AnalyticsClient.HTTP;
+using Couchbase.AnalyticsClient.Options;
+
+var credential = Credential.Create("username", "password");
+
+var cluster = Cluster.Create(
+    connectionString: "https://analytics.my-couchbase.example.com:18095",
+    credential: credential)
+);
+
+var result = await cluster.ExecuteQueryAsync("SELECT i from ARRAY_RANGE(1, 100) AS i;").ConfigureAwait(false);
+
+await foreach (var row in result.ConfigureAwait(false))
+{
+    Console.WriteLine(row.ContentAs<JsonElement>());
+}
+----
+
+
+=== Server Asynchronous API
+
+Operational Insights 2.2 introduced an asynchronous request API.
+The SDK sends a request, polls for results, and then fetches once the result is available.
+The SDK supports each stage of this information flow:
+
+`cluster.StartQueryAsync()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
+
+.Server Asynchronous API Example
+[source,csharp]
+----
+include::devguide:example$dotnet/ServerAsync.cs[indent=0,tag=server-async]
+----
+
+=== Connection String
+
+The `connectionString` in the above example should take the form of "https://<your_hostname>:" + PORT 
+
+include::{version-common}@analytics-sdk:shared:partial$connstr.adoc[tag=connstr]
+
+
+
+== Migration from Row-Based Analytics
+
+include::{version-common}@analytics-sdk:shared:partial$migration.adoc[tag=migration]

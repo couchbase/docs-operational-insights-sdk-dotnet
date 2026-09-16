@@ -1,0 +1,102 @@
+= Managing Connections
+:description: This section describes how to connect the {name-sdk} to an Operational Insights cluster.
+:page-toclevels: 2
+
+
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at wwww.
+
+
+[abstract]
+{description}
+It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting remote connections during devlopment.
+
+
+Our xref:hello-world:start-using-sdk.adoc[Getting Started pages] cover the basics of making a connection to an Operational Insights Enterprise cluster.
+// (Capella or self-managed).
+This page is a wider look at the topic.
+
+
+== Connecting to a Cluster
+
+The examples below use these imports:
+
+[source,csharp]
+----
+using Couchbase.AnalyticsClient;
+using Couchbase.AnalyticsClient.HTTP;
+using Couchbase.AnalyticsClient.Options;
+----
+
+A connection to an Operational Insights cluster is represented by a `Cluster` object.
+A `Cluster` provides access to databases, scopes, and collections, as well as various Analytics services and management interfaces.
+The simplest way to create a `Cluster` object is to call `Cluster.Create()` with a <<connection-strings, connection string>>, username, and password:
+
+[source,csharp]
+----
+var credential = Credential.Create("username", "password");
+public static Cluster Create(string connectionString, ICredential credential);
+----
+
+
+== Connection Strings
+
+
+include::{version-common}@operational-insights-sdk:shared:partial$connstr.adoc[tag=more-connstr]
+
+
+
+== Authentication by Credential
+
+Similarly to the `Authenticator` abstraction in Couchbase Operational SDKs, Operational Insights SDKs use a `Credential` abstraction covering regular password authentication (Basic Access Authentication), JSON Web Tokens (JWT), and Client Certificates through mTLS.
+
+Basic Access Authentication is shown in the example <<#connecting-to-a-cluster,above>>.
+
+
+=== JSON Web Tokens (JWT)
+
+JWT is supported with Operational Insights Server 2.2+.
+
+[source,csharp]
+----
+var credential = JwtCredential.Create(token);
+public static Cluster Create(string connectionString, ICredential credential);
+----
+
+
+=== Certificate Authentication
+
+Certificate authentication is supported with Operational Insights Server 2.2+.
+A conceptual and architectural overview of Operational Insights's support of X.509 certificates is provided in the xref:{version-server}@server:learn:security/certificates.adoc[Server certificates docs].
+Practical information on handling certificates can be found in the xref:{version-oi}@enterprise-analytics:manage:manage-security/manage-certificates.adoc[Operational Insights certificates docs].
+
+The Operational Insights SDK authenticates the client during the TLS handshake.
+The SDK reads the certificate and private key from a `PKCS#12` file:
+
+[source,csharp]
+----
+var credential = CertificateCredential.FromPem(certPath, keyPath);
+public static Cluster Create(string connectionString, ICredential credential);
+----
+
+Typically, JWTs have a short validity period.
+Renew JWTs with `Cluster.UpdateCredential(ICredential newCredential)`.
+
+
+== Certificate Authority
+
+To make a TLS connection to an Operational Insights cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration --
+the platform's defaults are automatically trusted.
+
+The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store.
+This includes well known CAs (including GoDaddy and Verisign), plus any other CA certificates that you wish to add.
+
+
+== Local Development
+
+We strongly recommend that the client and server xref:project-docs:compatibility.adoc#network-requirements[are in the same LAN-like environment] (for example, the same AWS Region).
+// As this may not always be possible during development, read the guidance on working with xref:ref:client-settings.adoc#commonly-used-options[constrained network environments].

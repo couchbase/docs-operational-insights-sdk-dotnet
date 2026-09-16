@@ -1,0 +1,56 @@
+= Querying Your Data 
+:page-toclevels: 2
+:description: Querying Operational Insights from the {name_platform} SDK, with {sqlpp}.
+
+
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at https://docs.couchbase.com/dotnet-operational-insights-sdk/1.0/concept-docs/querying-your-data.html
+
+[abstract]
+{description}
+
+
+
+{sqlpp} is a declarative query language for JSON data.
+
+
+
+== Real-Time Data Analysis
+
+Traditionally, analyzing JSON data in NoSQL databases requires complex transformations (like flattening) to prepare it for analytics, causing delays and hindering real-time insights.
+Enterprise Analytics eliminates these ETL complexities by unifying operational and analytical data stores into a single platform.
+This enables Zero ETL, reducing costs, complexity, and improving time to insight.
+
+
+== Long Running Queries
+
+All versions of Operational Insights support client-side async requests.
+This process keeps a connection live between client and server for long running queries.
+For such long running queries, a better mechanism is for the client to trigger an async query without holding a connection to the server open for the duration of the query execution. 
+This Server Asynchronous API was introduced in Operational Insights Server 2.2.
+For more information, see xref:{version-ea}@enterprise-analytics:reference:rest-analytics.adoc[].
+
+
+After the query request is submitted, clients can monitor the status of the request and on successful execution of query, opt to stream the results of the query.
+This way the connection between SDK client and Analytics Server does not stay open for the long duration of query processing, and is only needed for result set streaming.
+
+`cluster.StartQueryAsync()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
+
+This information flow can be seen in the sample code in the
+xref:howtos:sqlpp-queries-with-sdk.adoc#server-asynchronous-api[{sqlpp} queries section].
+
+
+== Next Steps
+
+Dive right in with our xref:howtos:sqlpp-queries-with-sdk.adoc[practical examples].
+
+
+// Parameterized queries
+
+
+// include::{version-common}@operational-insights-sdk:pages:partial$sqlpp.adoc[tag=options]
+

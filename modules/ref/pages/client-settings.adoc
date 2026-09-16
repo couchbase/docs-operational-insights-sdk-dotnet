@@ -1,0 +1,175 @@
+= Client Settings
+:description: Change the SDK's behavior by configuring client settings.
+:page-toclevels: 2
+
+[abstract]
+{description}
+
+Client settings can be configured by writing code, or by including parameters in the connection string.
+
+
+[#configure-with-code]
+== Configure with Code
+
+To configure SDK client settings by writing code, provide a configuration when creating the `Cluster` instance. Here's an example that configures several settings by passing the optional third argument to `Cluster.Create()`:
+
+[source,csharp]
+----
+var credential = Credential.Create("username", "password");
+
+var cluster = Cluster.Create(
+    connectionString: "https://insights.my-couchbase.example.com:18095?max_retries=5",
+    credential: credential,
+    configureOptions: options => options // <1>
+        .WithTimeoutOptions(timeoutOpts => timeoutOpts // <2>
+            .WithQueryTimeout(TimeSpan.FromSeconds(15)))
+        .WithSecurityOptions(securityOpts => securityOpts // <3>
+            .WithTrustOnlyCapella())
+);
+----
+<1> The parameter type is `Func<ClusterOptions, ClusterOptions>`.
+The SDK passes a `ClusterOptions` object to your consumer.
+Configure the options by calling methods on the given object.
+
+<2> The `*Options` classes are immutable record types.
+Every method returns the same record, allowing for method call chaining, but returns a new copy.
+
+<3> Most users won't need to configure security settings, but it's shown here for completeness.
+
+TIP: You don't need to call every method in the above example; call only the methods where you want to override the client setting's default value.
+
+
+[#configure-with-connection-string]
+== Configure with Connection String Parameters
+
+Another way to configure client settings is to include parameters in the connection string.
+Here is an example connection string with two parameters:
+
+[source]
+----
+https://example.com?timeout.connect_timeout=30s&timeout.query_timeout=2m
+----
+
+If the same parameter name appears in the connection string more than once, the SDK uses the rightmost value.
+
+If the same client setting is specified both in code and in the connection string, the SDK uses the value in the connection string.
+
+TIP: If your application reads the connection string from a config file (or other external source), you can change the connection string to override client settings without having to recompile your code.
+
+
+[#durations]
+=== Durations
+
+For client settings that represent durations, the connection string parameter's value is specified using the following format:
+
+> A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "us", "ms", "s", "m", "h".
+
+The SDK rejects non-positive timeout durations.
+
+
+[#booleans]
+=== Booleans
+
+For boolean client settings, the SDK expects the connection string parameter value to be `true` or `false` (case-sensitive).
+
+The values `1` and `0` may be used as aliases for `true` and `false`.
+
+
+[#client-settings-rerence]
+== Client Settings Reference
+
+This section describes all client settings supported by the SDK.
+
+
+[#timeout-options]
+=== Timeout Options
+
+Configuring timeouts gives you control over how long the SDK waits for operations to succeed or fail.
+
+[cols="1,1,2"]
+|===
+|Connection string parameter |Default value |Description
+
+|[[timeout.connect_timeout]]`timeout.connect_timeout`
+|`10s` (10 seconds)
+|Time limit for establishing a network connection.
+Indirectly controls SDK bootstrap timeout, which is 1.5 times this duration.
+
+|[[timeout.query_timeout]]`timeout.query_timeout`
+|`10m` (10 minutes)
+|Default query execution time limit. Can be overridden for specific queries by setting the `timeout` query option when executing the query.
+|===
+
+
+[#security-options]
+=== Security Options
+
+The SDK is secure by default.
+Unless configured to trust a different root certificate, it trusts only the Couchbase Capella certificate authority whose root certificate is bundled with the SDK.
+
+You probably won't need to configure the SDK's security options unless:
+
+* You have special security compliance requirements that restrict the set of allowed TLS cipher suites.
+
+* You are a Couchbase employee working with an internal non-production hosted service, or a local server installation.
+
+[cols="1,1,2"]
+|===
+|Connection string parameter |Default value |Description
+
+|[[security.cipher_suites]]`security.cipher_suites`
+|Empty string / empty list (SDK uses any cipher suite supported by the JVM)
+|Limits the set of cipher suites the SDK may use when negotiating secure connections to the server.
+
+Leave this at the default value unless you have special security compliance requirements.
+
+When specifying this as a connection string parameter, the value is a comma-delimited list with no whitespace.
+
+Consult your .NET SDK reference documentation for a list of supported cipher suite names.
+
+|[[security.trust_only_non_prod]]`security.trust_only_non_prod`
+|N/A
+|Setting this to `true` enables the SDK to connect securely to the internal Couchbase non-production hosted service, which uses a different certificate authority than the production site.
+
+You probably won't need to do this unless you are a Couchbase employee.
+
+|[[security.trust_only_pem_file]]`security.trust_only_pem_file`
+|N/A
+|Filesystem path of the PEM-encoded root certificate(s) to trust instead of the Couchbase Capella certificate authority (CA) root certificate bundled with the SDK.
+
+In the unlikely event the Couchbase Capella CA is compromised, you can use this to point the SDK at an updated CA certificate without having to immediately upgrade to a new version of the SDK (which will include the updated CA certificate and trust it by default).
+|===
+
+
+[#danger-zone]
+==== Danger Zone
+Finally, there is one security option whose use is strongly discouraged in nearly all circumstances.
+Setting `security.disable_server_certificate_verification` to `true` allows the SDK to connect to any server, regardless of whether the server presents a certificate trusted by the SDK.
+
+CAUTION: Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection.
+Don't do this unless connecting to a server running locally on your development machine.
+
+
+[#deserializer]
+=== Deserializer
+
+The SDK uses a component called a `Deserializer` to convert query result rows into .NET objects. The default implementation is `StjJsonDeserializer`, a thin wrapper using System.Text.Json.
+
+By default, a System.Text.Json `JsonSerializer` throws an exception if it encounters a JSON field that does not match the structure of the target class.
+Here's an example that shows how to configure the `JsonSerializer` with different behavior:
+
+[source,csharp]
+----
+var cluster = Cluster.Create(
+    connectionString,
+    Credential.Create(username, password),
+    clusterOptions -> clusterOptions
+        .WithDeserializer(new StjJsonDeserializer())
+);
+----
+
+This cluster option specifies the _default_ deserializer.
+You can override the deserializer for a specific query by setting the `deserializer` query option when executing the query.
+
+TIP: If you prefer not to work with the `Deserializer` interface, you can always call `row.ContentAs<byte[]>()` to get a row's content as a raw byte array.
+Then you can process the byte array however you like.

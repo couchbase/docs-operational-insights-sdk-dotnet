@@ -1,0 +1,1 @@
+include::{version-common}@operational-insights-sdk:pages:partial$glossary.adoc[]

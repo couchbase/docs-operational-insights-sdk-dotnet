@@ -1,0 +1,33 @@
+= Install the SDK
+:page-toclevels: 2
+:description: How to install the {name-sdk} from NuGet.
+:page-partial:
+
+
+[abstract]
+{description}
+
+
+
+== Getting the SDK
+
+
+Couchbase publishes all stable artifacts to https://www.nuget.org/profiles/couchbase[NuGet].
+
+Install using your preferred method:
+
+=== .NET CLI
+
+[source,shell,subs="attributes+"]
+----
+dotnet add package Couchbase.OperationalInsightsClient --version {sdk_current_version}
+----
+
+=== Add to .csproj
+
+[source,xml,subs="attributes+"]
+----
+<ItemGroup>
+  <PackageReference Include="Couchbase.OperationalInsightsClient" Version="{sdk_current_version}" />
+</ItemGroup>
+----

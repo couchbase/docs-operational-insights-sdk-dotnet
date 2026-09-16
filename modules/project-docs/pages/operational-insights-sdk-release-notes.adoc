@@ -1,0 +1,38 @@
+= Operational Insights SDK Release Notes
+:description: Release notes, brief installation instructions, and download archive for the Operational Insights .NET Client.
+:navtitle: Release Notes
+:page-toclevels: 2
+
+
+// tag::all[]
+[abstract]
+{description}
+
+Version {sdk_dot_minor} of the .NET Operational Insights SDK implements the {sdk_api} xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Operational Insights.
+
+
+== Installation
+
+See the xref:project-docs:sdk-full-installation.adoc[Installation] guide for details.
+
+// tag::all[]
+
+
+[#latest-release]
+== .NET Operational Insights SDK 1.0 Releases
+
+We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
+All patch releases for each dot minor release should be API compatible, and safe to upgrade;
+any changes to expected behavior are noted in the release notes that follow.
+
+
+
+[[v1.0.0]]
+=== Version 1.0.0 (?? October 2026)
+
+https://docs.couchbase.com/sdk-api/operational-insights-dotnet-client-1.0.0[API Reference]
+https://www.nuget.org/packages/Couchbase.OperationalInsightsClient/1.0.0[NuGet Package]
+
+This is the first release of the 1.0 Analytics .NET SDK dotminor. 
+

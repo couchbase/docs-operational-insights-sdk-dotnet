@@ -1,0 +1,94 @@
+= Compatibility
+:description: Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. \
+Plus notes on Cloud, networks, and AWS Lambda.
+:page-toclevels: 3
+:table-caption!:
+
+
+[abstract]
+{description}
+
+
+== Platform Compatibility
+
+
+=== .NET Version Compatibility
+
+The {sdk_dot_minor} {name-sdk} requires .NET 8 to be installed.
+We recommend using the most recent long-term support (LTS) version of .NET.
+
+TIP: Remember to keep your .NET installation up to date with the latest patches.
+
+
+=== OS Compatibility
+
+include::{sdk_api}@operational-insights-sdk:shared:partial$compatibility.adoc[tag=os-compat]
+
+
+
+
+
+=== Network Requirements
+
+include::{sdk_api}@operational-insights-sdk:shared:partial$network-requirements.adoc[tag=lan-like]
+
+
+
+
+== Enterprise Analytics Compatibility
+
+
+The 1.0 releases of the Operational Insights SDK are fully compatible with all currently supported releases of Operational Insights Enterprise.
+The 1.0 {name_platform} SDK also supports an asynchronous (streaming) API update in recent (2.2+) releases of Operational Insights Enterprise Server.
+
+
+
+
+////
+== Capella Analytics Compatibility
+
+
+Capella Analytics is a fully hosted service, continually updated, and offering the latest version --
+with users having a few weeks to upgrade from the previous version.
+As such, the latest Couchbase Columnar SDKs are tested against the latest versions.
+Where older versions of the {name-sdk} pre-date significant new features in Analytics, those differences will be noted in this section.
+
+
+TIP: Connecting to a xref:analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
+////
+
+
+
+
+
+=== API Version
+
+include::{sdk_api}@operational-insights-sdk:shared:partial$compatibility.adoc[tag=api-version]
+
+
+
+
+== SDK API Stability
+
+
+=== Interface Stability
+
+include::{version-common}@operational-insights-sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+
+
+
+
+
+////
+=== Older Analytics SDK Versions
+
+include::{version-common}@sdk:shared:partial$archive.adoc[tag=link]
+////
+
+////
+Note the https://www.couchbase.com/support-policy[End of Life dates^] for {name-sdk} versions.
+See the notes there for Support details.
+////
+
+
+// Something on Columnar SDKs??
