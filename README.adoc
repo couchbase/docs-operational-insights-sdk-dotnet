@@ -5,7 +5,7 @@ https://docs.couchbase.com/operational-insights-dotnet-sdk/1.0/hello-world/overv
 
 
 This branch documents the 1.0 release of the SDK.
-It follows the https://docs.couchbase.com/operational-insights-dotnet-sdk/1.0/project-docs/compatibility.html#api-version[analytics SDK 1.0 API].
+It follows the https://docs.couchbase.com/operational-insights-dotnet-sdk/1.0/project-docs/compatibility.html#api-version[Operational Insights SDK 1.0 API].
 
 
 == Contributing
