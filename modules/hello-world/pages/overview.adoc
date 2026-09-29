@@ -88,7 +88,7 @@ Useful resources to help support your development experience with Operational In
 
 [.column]
 .Deployment Docs
-* xref:project-docs:analytics-sdk-release-notes.adoc[]
+* xref:project-docs:operational-insights-sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[Compatibility]
 * xref:project-docs:sdk-full-installation.adoc[]
 

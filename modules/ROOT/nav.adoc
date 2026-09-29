@@ -5,7 +5,7 @@
 * xref:concept-docs:querying-your-data.adoc[]
 ** xref:howtos:sqlpp-queries-with-sdk.adoc[]
 * xref:project-docs:deployment.adoc[SDK Deployment]
-** xref:project-docs:analytics-sdk-release-notes.adoc[Release Notes]
+** xref:project-docs:operational-insights-sdk-release-notes.adoc[Release Notes]
 // *** https://docs-archive.couchbase.com/home/index.html[Older Versions Archive^]
 ** xref:project-docs:compatibility.adoc[]
 // *** xref:project-docs:third-party-integrations.adoc[]
