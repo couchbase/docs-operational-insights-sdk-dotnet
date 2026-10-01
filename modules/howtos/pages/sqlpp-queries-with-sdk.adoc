@@ -21,7 +21,7 @@ For a deeper look at the concepts, to help you better understand the Query Servi
 
 == Before You Start
 
-This page assumes that you have xref:hello-world:start-using-sdk.adoc[installed the {name-sdk}], added your IP address to the allowlist, and xref:analytics:manage:manage-nodes/create-cluster.adoc#cluster[created an Enterprise Analytics cluster].
+This page assumes that you have xref:hello-world:start-using-sdk.adoc[installed the {name-sdk}], added your IP address to the allowlist, and xref:analytics:manage:manage-nodes/create-cluster.adoc#cluster[created an Operational Insights Enterprise cluster].
 
 Create a collection to work upon by xref:analytics:intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections[importing the travel-sample dataset] into your cluster.
 
