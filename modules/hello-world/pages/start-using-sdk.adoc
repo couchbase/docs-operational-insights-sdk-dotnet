@@ -94,10 +94,10 @@ include::devguide:example$dotnet/ServerAsync.cs[indent=0,tag=server-async]
 
 The `connectionString` in the above example should take the form of "https://<your_hostname>:" + PORT 
 
-include::{version-common}@analytics-sdk:shared:partial$connstr.adoc[tag=connstr]
+include::{version-common}@operational-insights-sdk:shared:partial$connstr.adoc[tag=connstr]
 
 
 
 == Migration from Row-Based Analytics
 
-include::{version-common}@analytics-sdk:shared:partial$migration.adoc[tag=migration]
+include::{version-common}@operational-insights-sdk:shared:partial$migration.adoc[tag=migration]
