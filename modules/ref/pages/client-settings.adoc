@@ -118,7 +118,7 @@ You probably won't need to configure the SDK's security options unless:
 |Connection string parameter |Default value |Description
 
 |[[security.cipher_suites]]`security.cipher_suites`
-|Empty string / empty list (SDK uses any cipher suite supported by the JVM)
+|Empty string / empty list (SDK uses any cipher suite supported by the CLR)
 |Limits the set of cipher suites the SDK may use when negotiating secure connections to the server.
 
 Leave this at the default value unless you have special security compliance requirements.
