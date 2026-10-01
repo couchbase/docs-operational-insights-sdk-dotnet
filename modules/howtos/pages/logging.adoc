@@ -53,7 +53,7 @@ var clusterOptions = new ClusterOptions().WithLogging(loggerFactory);
 var credential = Credential.Create("username", "password");
 
 var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
+    connectionString: "https://insights.my-couchbase.example.com:18095",
     credential: credential,
     clusterOptions: clusterOptions
 );
