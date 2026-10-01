@@ -34,5 +34,9 @@ any changes to expected behavior are noted in the release notes that follow.
 https://docs.couchbase.com/sdk-api/operational-insights-dotnet-client-1.0.0[API Reference]
 https://www.nuget.org/packages/Couchbase.OperationalInsightsClient/1.0.0[NuGet Package]
 
-This is the first release of the 1.0 Analytics .NET SDK dotminor. 
+This is the first release of the 1.0 Operational Insights .NET SDK client. 
 
+
+== Previous SDKs
+
+See the xref:dotnet-analytics-sdk:project-docs:analytics-sdk-release-notes.adoc[Legacy Analytics SDK release notes] for earlier developments.
