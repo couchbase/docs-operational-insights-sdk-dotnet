@@ -18,7 +18,7 @@ Install using your preferred method:
 
 === .NET CLI
 
-[source,shell,subs="attributes+"]
+[source,console,subs="attributes+"]
 ----
 dotnet add package Couchbase.OperationalInsightsClient --version {sdk_current_version}
 ----
