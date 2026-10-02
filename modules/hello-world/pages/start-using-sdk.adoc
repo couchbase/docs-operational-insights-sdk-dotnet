@@ -24,7 +24,7 @@ Install and configure an xref:enterprise-analytics:intro:intro.adoc[Operational 
 === Minimum .NET Version
 
 The {name-sdk} requires .NET 8 or later.
-We recommend using the most recent long-term support (LTS) version of .NET.
+We recommend using the most recent long-term support (LTS) version of .NET (at the time of SDK release, .NET 10).
 
 == Adding the SDK to an Existing Project
 
