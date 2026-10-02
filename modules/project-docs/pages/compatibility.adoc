@@ -14,8 +14,8 @@ Plus notes on Cloud, networks, and AWS Lambda.
 
 === .NET Version Compatibility
 
-The {sdk_dot_minor} {name-sdk} requires .NET 8 to be installed.
-We recommend using the most recent long-term support (LTS) version of .NET.
+The {sdk_dot_minor} {name-sdk} requires .NET 8 or later.
+We recommend using the most recent long-term support (LTS) version of .NET (at the time of SDK release, .NET 10).
 
 TIP: Remember to keep your .NET installation up to date with the latest patches.
 
