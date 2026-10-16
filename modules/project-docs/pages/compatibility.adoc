@@ -1,6 +1,5 @@
 = Compatibility
-:description: Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. \
-Plus notes on Cloud, networks, and AWS Lambda.
+:description: Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK.
 :page-toclevels: 3
 :table-caption!:
 

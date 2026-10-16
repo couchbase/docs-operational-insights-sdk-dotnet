@@ -27,9 +27,9 @@ The examples below use these imports:
 
 [source,csharp]
 ----
-using Couchbase.AnalyticsClient;
-using Couchbase.AnalyticsClient.HTTP;
-using Couchbase.AnalyticsClient.Options;
+using Couchbase.OperationalInsightsClient;
+using Couchbase.OperationalInsightsClient.HTTP;
+using Couchbase.OperationalInsightsClient.Options;
 ----
 
 A connection to an Operational Insights cluster is represented by a `Cluster` object.

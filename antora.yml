@@ -22,5 +22,5 @@ asciidoc:
     name_platform_lc: 'dotnet'
     name-sdk: '.NET Operational Insights SDK'
     sdk_api: '1.0'
-    sdk-api-link: https://docs.couchbase.com/sdk-api/operational-insights-dotnet-client
-    sdk-gh-link: https://github.com/couchbaselabs/operational-insights-dotnet-client/
+    sdk-api-link: https://docs.couchbase.com/sdk-api/insights-dotnet-client
+    sdk-gh-link: https://github.com/couchbase/operational-insights-dotnet-client/

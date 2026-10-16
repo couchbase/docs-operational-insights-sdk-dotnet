@@ -22,10 +22,10 @@
 
 using System.Diagnostics;
 using System.Text.Json;
-using Couchbase.AnalyticsClient;
-using Couchbase.AnalyticsClient.Async;
-using Couchbase.AnalyticsClient.HTTP;
-using Couchbase.AnalyticsClient.Options;
+using Couchbase.OperationalInsightsClient;
+using Couchbase.OperationalInsightsClient.Async;
+using Couchbase.OperationalInsightsClient.HTTP;
+using Couchbase.OperationalInsightsClient.Options;
 using Microsoft.Extensions.Logging;
 
 // ──────────────────────────────────────────────

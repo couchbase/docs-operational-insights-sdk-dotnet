@@ -7,8 +7,6 @@
 
 
 
-
-
 include::{version-common}@operational-insights-sdk:shared:partial$start-using-sdk.adoc[tag=intro]
 
 
@@ -56,14 +54,14 @@ You can still use this API with Operational Insights 2.2 and later, in addition 
 
 [source,csharp]
 ----
-using Couchbase.AnalyticsClient;
-using Couchbase.AnalyticsClient.HTTP;
-using Couchbase.AnalyticsClient.Options;
+using Couchbase.OperationalInsightsClient;
+using Couchbase.OperationalInsightsClient.HTTP;
+using Couchbase.OperationalInsightsClient.Options;
 
 var credential = Credential.Create("username", "password");
 
 var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
+    connectionString: "https://insights.my-couchbase.example.com:18095",
     credential: credential)
 );
 
