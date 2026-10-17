@@ -34,7 +34,7 @@ include::{sdk_api}@operational-insights-sdk:shared:partial$network-requirements.
 
 
 
-== Enterprise Analytics Compatibility
+== Operational Insights Compatibility
 
 
 The 1.0 releases of the Operational Insights SDK are fully compatible with all currently supported releases of Operational Insights Enterprise.
