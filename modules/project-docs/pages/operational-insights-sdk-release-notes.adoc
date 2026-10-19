@@ -29,7 +29,7 @@ any changes to expected behavior are noted in the release notes that follow.
 
 
 [[v1.0.0]]
-=== Version 1.0.0 15 October 2026)
+=== Version 1.0.0 (15 October 2026)
 
 https://docs.couchbase.com/sdk-api/insights-dotnet-client-1.0.0[API Reference]
 https://www.nuget.org/packages/Couchbase.OperationalInsightsClient/1.0.0[NuGet Package]
