@@ -16,7 +16,7 @@
 *** xref:project-docs:sdk-licenses.adoc[]
 *** xref:home:contribute:index.adoc[Improve the Docs]
 * xref:ref:index.adoc[]
-** https://docs.couchbase.com/sdk-api/operational-insights-dotnet-client[API Reference^]
+** https://docs.couchbase.com/sdk-api/insights-dotnet-client[API Reference^]
 ** xref:ref:client-settings.adoc[]
 ** xref:ref:error-codes.adoc[]
 ** xref:ref:glossary.adoc[Glossary]
