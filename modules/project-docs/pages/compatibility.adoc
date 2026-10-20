@@ -40,6 +40,8 @@ include::{sdk_api}@operational-insights-sdk:shared:partial$network-requirements.
 The 1.0 releases of the Operational Insights SDK are fully compatible with all currently supported releases of Operational Insights Enterprise.
 The 1.0 {name_platform} SDK also supports an asynchronous (streaming) API update in recent (2.2+) releases of Operational Insights Enterprise Server.
 
+include::{sdk_api}@operational-insights-sdk:shared:partial$compatibility.adoc[tag=cluster-compat]
+
 
 
 
